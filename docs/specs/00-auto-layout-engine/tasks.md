@@ -92,4 +92,4 @@
 ## Progress Log
 <!-- Appended by the executor (EXECUTION_PROTOCOL.md). One line per completed top-level task. -->
 <!-- YYYY-MM-DD | 00-auto-layout-engine 0.x done | <sha> | note -->
-2026-06-21 | 00-auto-layout-engine 0.1 done | 6999bd6 | Vitest harness + smoke test, npm test green (2 passed)
+2026-06-21 | 00-auto-layout-engine 0.1 done | eac8a3a | Vitest harness + smoke test, npm test green (2 passed)
