@@ -31,18 +31,19 @@
   - [x] 0.3.2 Implement `packages/core/src/layout/order.js`: barycenter sweep over ranks (mean
     neighbor index), stable tie-break by input order, fixed iteration count (4 sweeps). 5 tests green.
 
-- [ ] 0.4 **`layoutScene` assembly: placement, components, pinning, overlap** (R0.1, R0.2, R0.3, R0.4, R0.5, R0.6)
-  - [ ] 0.4.1 Write `packages/core/test/layout.test.js`: coord-less graph → all nodes get integer
+- [x] 0.4 **`layoutScene` assembly: placement, components, pinning, overlap** (R0.1, R0.2, R0.3, R0.4, R0.5, R0.6)
+  - [x] 0.4.1 Write `packages/core/test/layout.test.js`: coord-less graph → all nodes get integer
     `u`,`v` and input object is not mutated (R0.1); two calls deep-equal incl. key-shuffled input
     (R0.2); unique cells + pairwise `getNodeBounds` rects disjoint, incl. a long-label case (R0.3);
     disconnected components occupy disjoint bounding boxes + isolated node placed (R0.4.2/3); pinned
     node keeps exact coords and no auto node shares its cell (R0.5); all-pinned input → output coords
-    equal input (R0.6).
-  - [ ] 0.4.2 Implement `packages/core/src/layout/index.js`: normalize + dup-id throw; `isPinned`
-    (both `u`,`v` finite); `weaklyConnectedComponents`; per-component `rank.js`+`order.js` →
-    provisional `(u,v)`; uniform `spacing` scale + `resolveOverlaps` loop using `getNodeBounds`
-    (bump to `maxSpacing`); pack components with `componentGap`; probe auto nodes off pinned/occupied
-    cells; return a new `SceneConfig` (no mutation). Make 0.4.1 green.
+    equal input (R0.6). (16 tests; sonnet subagent, reviewed.)
+  - [x] 0.4.2 Implement `packages/core/src/layout/index.js`: normalize + dup-id throw; `isPinned`
+    (both `u`,`v` finite); `weaklyConnectedComponents` (BFS); per-component `rank.js`+`order.js` →
+    provisional `(u,v)`; spacing estimated from largest footprint then verified/bumped via
+    `getNodeBounds` (long-label settled at spacing 6, cap 12); pack components with `componentGap`;
+    probe auto nodes off pinned/occupied cells; return a new `SceneConfig` (no mutation). Full suite
+    green (30 tests). (sonnet subagent, reviewed line-by-line.)
 
 - [ ] 0.5 **Public API surface + downstream integration** (R0.1)
   - [ ] 0.5.1 Add `export { layoutScene } from './layout/index.js';` to `packages/core/src/index.js`.
@@ -96,3 +97,4 @@
 2026-06-21 | 00-auto-layout-engine 0.1 done | eac8a3a | Vitest harness + smoke test, npm test green (2 passed)
 2026-06-21 | 00-auto-layout-engine 0.2 done | 16d6b51 | rank.js cycle-break + longest-path ranking, 7 tests green
 2026-06-21 | 00-auto-layout-engine 0.3 done | 6089f35 | order.js barycenter crossing reduction, 5 tests green (sonnet subagent, reviewed)
+2026-06-21 | 00-auto-layout-engine 0.4 done | PENDING | layoutScene assembly (components/pinning/spacing/probe), full suite green (30 tests) (sonnet subagent, reviewed)
