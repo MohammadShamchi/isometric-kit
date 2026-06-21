@@ -1,7 +1,7 @@
 {
   "name": "@isometric-design/react",
   "version": "0.1.0",
-  "description": "React components for isometric architecture diagrams",
+  "description": "React components for auto-laid-out isometric architecture diagrams",
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -21,7 +21,29 @@
   ],
   "scripts": {
     "build": "tsup && cp src/tokens.css dist/tokens.css",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "isometric",
+    "diagram",
+    "architecture",
+    "react",
+    "svg",
+    "auto-layout",
+    "diagrams-as-code"
+  ],
+  "author": "Mohammad Shamchi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohammadShamchi/isometric-kit.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/MohammadShamchi/isometric-kit#readme",
+  "bugs": "https://github.com/MohammadShamchi/isometric-kit/issues",
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -37,6 +59,5 @@
     "react-dom": "^19.1.0",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3"
-  },
-  "license": "MIT"
+  }
 }
