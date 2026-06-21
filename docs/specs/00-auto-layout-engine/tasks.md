@@ -99,4 +99,4 @@
 2026-06-21 | 00-auto-layout-engine 0.2 done | 16d6b51 | rank.js cycle-break + longest-path ranking, 7 tests green
 2026-06-21 | 00-auto-layout-engine 0.3 done | 6089f35 | order.js barycenter crossing reduction, 5 tests green (sonnet subagent, reviewed)
 2026-06-21 | 00-auto-layout-engine 0.4 done | 235a758 | layoutScene assembly (components/pinning/spacing/probe), full suite green (30 tests) (sonnet subagent, reviewed)
-2026-06-21 | 00-auto-layout-engine 0.5 done | PENDING | barrel export + d.ts types + downstream integration test, 32 tests green (sonnet subagent, reviewed)
+2026-06-21 | 00-auto-layout-engine 0.5 done | d459a76 | barrel export + d.ts types + downstream integration test, 32 tests green (sonnet subagent, reviewed)
