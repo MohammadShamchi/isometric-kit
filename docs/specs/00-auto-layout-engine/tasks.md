@@ -16,13 +16,13 @@
   - [x] 0.1.2 Add `packages/core/test/smoke.test.js` importing `IsoEngine`/`getSceneBounds` from
     `../src/index.js` to prove ESM resolution; `npm test` green (2 passed).
 
-- [ ] 0.2 **Cycle-breaking + rank assignment along `u`** (R0.4, R0.7)
-  - [ ] 0.2.1 Write `packages/core/test/layout.rank.test.js`: chain `a→b→c` yields strictly increasing
+- [x] 0.2 **Cycle-breaking + rank assignment along `u`** (R0.4, R0.7)
+  - [x] 0.2.1 Write `packages/core/test/layout.rank.test.js`: chain `a→b→c` yields strictly increasing
     rank; a 3-node cycle terminates with finite ranks; a node with no incoming edges is rank 0;
-    deterministic across input-order shuffles of links.
-  - [ ] 0.2.2 Implement `packages/core/src/layout/rank.js`: build directed adjacency, DFS cycle-break
-    (back-edges ignored for ranking, visited in input order), longest-path layering → `rank` map.
-    Make 0.2.1 green.
+    deterministic across input-order shuffles of links. (Added diamond longest-path + self-loop cases.)
+  - [x] 0.2.2 Implement `packages/core/src/layout/rank.js`: build directed adjacency, DFS cycle-break
+    (back-edges ignored for ranking, visited in input order), longest-path layering (Kahn) → `rank` map.
+    7 tests green.
 
 - [ ] 0.3 **Within-rank ordering (crossing reduction) along `v`** (R0.7)
   - [ ] 0.3.1 Write `packages/core/test/layout.order.test.js`: a known 2-rank crossing is reduced by
@@ -93,3 +93,4 @@
 <!-- Appended by the executor (EXECUTION_PROTOCOL.md). One line per completed top-level task. -->
 <!-- YYYY-MM-DD | 00-auto-layout-engine 0.x done | <sha> | note -->
 2026-06-21 | 00-auto-layout-engine 0.1 done | eac8a3a | Vitest harness + smoke test, npm test green (2 passed)
+2026-06-21 | 00-auto-layout-engine 0.2 done | PENDING | rank.js cycle-break + longest-path ranking, 7 tests green
