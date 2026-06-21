@@ -3,6 +3,9 @@
 Spec-driven roadmap for `@isometric-design/*`. Authoring rules: [`SPEC_WORKFLOW.md`](SPEC_WORKFLOW.md).
 Execution: [`EXECUTION_PROTOCOL.md`](EXECUTION_PROTOCOL.md).
 
+For the higher-level done / remaining tracker (distribution, tech debt, next actions), see
+[`../STATUS.md`](../STATUS.md).
+
 ## Strategic frame
 
 The product is a headless engine that turns a system description into a high-grade isometric diagram.
