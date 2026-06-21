@@ -1,0 +1,17 @@
+{
+  "name": "@isometric-design/core",
+  "version": "0.1.0",
+  "description": "Isometric projection engine and SVG node primitives",
+  "type": "module",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "isometric-design",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=@isometric-design/react",
+    "typecheck": "npm run typecheck --workspace=@isometric-design/react",
+    "dev": "npm run dev --workspace=demo-react",
+    "dev:vanilla": "python3 -m http.server 8080"
+  }
+}

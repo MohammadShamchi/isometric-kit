@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Isometric Kit — Shape Explorer</title>
+    <style>
+      :root {
+        --surface: #d8dfe8;
+        --canvas-2: #c5cdd8;
+        --edge: #5a6578;
+        --text-2: #9aa3b2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        background: #14161b;
+        color: #e8ecf1;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+
+      .sidebar {
+        width: 240px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid #2a2f3a;
+        background: #1a1d24;
+      }
+
+      .sidebar-header {
+        padding: 1.25rem 1rem 1rem;
+        border-bottom: 1px solid #2a2f3a;
+      }
+
+      .sidebar-header h1 {
+        margin: 0;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #9aa3b2;
+      }
+
+      .sidebar-header p {
+        margin: 0.375rem 0 0;
+        font-size: 0.8125rem;
+        color: #6b7380;
+      }
+
+      .sidebar-nav {
+        flex: 1;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        overflow-y: auto;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.625rem 0.75rem;
+        border: none;
+        border-radius: 6px;
+        background: transparent;
+        color: #c5cdd8;
+        font: inherit;
+        font-size: 0.875rem;
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .nav-item:hover {
+        background: #252932;
+        color: #e8ecf1;
+      }
+
+      .nav-item.is-active {
+        background: #2d3544;
+        color: #fff;
+      }
+
+      .nav-count {
+        font-size: 0.75rem;
+        color: #6b7380;
+        background: #1a1d24;
+        padding: 0.125rem 0.4375rem;
+        border-radius: 999px;
+      }
+
+      .nav-item.is-active .nav-count {
+        color: #9aa3b2;
+        background: #1f2430;
+      }
+
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .main-header {
+        padding: 1.25rem 1.5rem 1rem;
+        border-bottom: 1px solid #2a2f3a;
+      }
+
+      .main-header h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      .main-header p {
+        margin: 0.375rem 0 0;
+        font-size: 0.875rem;
+        color: #9aa3b2;
+      }
+
+      .stage {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        gap: 1.5rem;
+      }
+
+      .canvas-wrap {
+        flex-shrink: 0;
+      }
+
+      svg {
+        display: block;
+        background: #252932;
+        border-radius: 8px;
+        box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+      }
+
+      .element-panel {
+        width: 200px;
+        flex-shrink: 0;
+        align-self: flex-start;
+        padding: 1rem;
+        background: #1a1d24;
+        border: 1px solid #2a2f3a;
+        border-radius: 8px;
+      }
+
+      .element-panel h3 {
+        margin: 0 0 0.75rem;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #6b7380;
+      }
+
+      .element-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .element-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+        padding: 0.5rem 0.625rem;
+        background: #252932;
+        border-radius: 4px;
+      }
+
+      .element-name {
+        font-size: 0.8125rem;
+        color: #e8ecf1;
+      }
+
+      .element-meta {
+        font-size: 0.75rem;
+        color: #7eb8ff;
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>Isometric Kit</h1>
+        <p>Shape explorer</p>
+      </div>
+      <nav id="sidebar-nav" class="sidebar-nav" aria-label="Shapes"></nav>
+    </aside>
+
+    <main class="main">
+      <header class="main-header">
+        <h2 id="scene-title"></h2>
+        <p id="scene-subtitle"></p>
+      </header>
+
+      <div class="stage">
+        <div class="canvas-wrap">
+          <svg id="canvas" viewBox="0 0 800 600" width="800" height="600"></svg>
+        </div>
+
+        <aside class="element-panel">
+          <h3>Elements</h3>
+          <ul id="element-list" class="element-list"></ul>
+        </aside>
+      </div>
+    </main>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@isometric-design/core": "/packages/core/src/index.js"
+        }
+      }
+    </script>
+    <script type="module" src="./demo/main.js"></script>
+  </body>
+</html>

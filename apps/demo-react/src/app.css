@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #14161b;
+  color: #e8ecf1;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  padding: 1.5rem 2rem 1rem;
+  border-bottom: 1px solid #2a2f3a;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.app-header p {
+  margin: 0.375rem 0 0;
+  font-size: 0.875rem;
+  color: #9aa3b2;
+}
+
+.app-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.export-button {
+  appearance: none;
+  border: 1px solid #3a4150;
+  border-radius: 0.375rem;
+  background: #1e222b;
+  color: #e8ecf1;
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.5rem 0.875rem;
+  cursor: pointer;
+}
+
+.export-button:hover {
+  background: #262b36;
+  border-color: #4a5568;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}

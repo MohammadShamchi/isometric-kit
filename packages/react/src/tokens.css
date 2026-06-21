@@ -1,0 +1,28 @@
+:root {
+  --canvas: #eef1f5;
+  --surface: #d8dfe8;
+  --canvas-2: #c5cdd8;
+  --edge: #5a6578;
+  --ink: #1a1d24;
+  --line-2: #b0b8c4;
+  --text-2: #9aa3b2;
+  --accent: #098aef;
+  --accent-subtle: rgba(9, 138, 239, 0.12);
+}
+
+.iso-wrapper {
+  --canvas: #eef1f5;
+  --surface: #d8dfe8;
+  --canvas-2: #c5cdd8;
+  --edge: #5a6578;
+  --ink: #1a1d24;
+  --line-2: #b0b8c4;
+  --text-2: #9aa3b2;
+  --accent: #098aef;
+  --accent-subtle: rgba(9, 138, 239, 0.12);
+}
+
+.iso-cube,
+.iso-cylinder {
+  cursor: pointer;
+}
