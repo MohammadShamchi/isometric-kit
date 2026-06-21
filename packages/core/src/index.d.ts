@@ -69,6 +69,34 @@ export interface SceneConfig {
   links?: SceneLink[];
 }
 
+export interface LayoutNode {
+  id: string;
+  type: NodeType;
+  u?: number;
+  v?: number;
+  z?: number;
+  height?: number;
+  layers?: number;
+  theme?: ThemeState;
+  label?: string;
+}
+
+export interface LayoutGraph {
+  nodes: LayoutNode[];
+  links?: SceneLink[];
+}
+
+export interface LayoutOptions {
+  spacing?: number;
+  componentGap?: number;
+  maxSpacing?: number;
+}
+
+export function layoutScene(
+  graph: LayoutGraph,
+  options?: LayoutOptions,
+): SceneConfig;
+
 export function renderNode(node: SceneNode): string;
 export function renderLink(link: SceneLink, nodeById: Map<string, SceneNode>): string;
 export function renderScene(scene: SceneConfig): string;

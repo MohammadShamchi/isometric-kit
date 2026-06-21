@@ -11,14 +11,20 @@ export interface GraphNodeRef {
   height?: number;
 }
 
-export interface GraphNode extends GraphNodeRef {
+export interface GraphNode {
   id: string;
   type: GraphNodeType;
+  u?: number;
+  v?: number;
+  z?: number;
+  height?: number;
   layers?: number;
   label?: string;
   theme?: ThemeName;
   onClick?: (id: string) => void;
 }
+
+export type CoordinatedNode = GraphNode & { u: number; v: number };
 
 export interface GraphLink {
   from: string;
@@ -29,6 +35,11 @@ export interface GraphLink {
 
 export interface ArchitectureGraphData {
   nodes: GraphNode[];
+  links?: GraphLink[];
+}
+
+export interface CoordinatedGraphData {
+  nodes: CoordinatedNode[];
   links?: GraphLink[];
 }
 
@@ -64,7 +75,7 @@ export function validateGraphData(data: ArchitectureGraphData): void {
   }
 }
 
-export function toBoundsNodes(nodes: GraphNode[]): BoundsNodeInput[] {
+export function toBoundsNodes(nodes: CoordinatedNode[]): BoundsNodeInput[] {
   return nodes.map(({ type, u, v, z, height, layers, label }) => ({
     type,
     u,

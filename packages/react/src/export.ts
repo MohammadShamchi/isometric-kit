@@ -6,7 +6,11 @@ import {
   type BuildArchitectureSvgOptions,
   type SceneConfig,
 } from '@isometric-design/core';
-import type { ArchitectureGraphData } from './types/graph';
+import { applyAutoLayout } from './applyLayout';
+import type {
+  ArchitectureGraphData,
+  CoordinatedGraphData,
+} from './types/graph';
 import type { ThemeName } from './themes';
 
 const THEME_MAP: Record<ThemeName, SceneConfig['nodes'][number]['theme']> = {
@@ -19,7 +23,7 @@ export interface ExportOptions extends BuildArchitectureSvgOptions {
   scale?: number;
 }
 
-function toSceneConfig(data: ArchitectureGraphData): SceneConfig {
+function toSceneConfig(data: CoordinatedGraphData): SceneConfig {
   return {
     nodes: data.nodes.map((node) => ({
       id: node.id,
@@ -41,7 +45,7 @@ export function exportArchitectureSvg(
   options?: ExportOptions,
 ): string {
   const { scale: _scale, ...svgOptions } = options ?? {};
-  return buildArchitectureSvg(toSceneConfig(data), svgOptions);
+  return buildArchitectureSvg(toSceneConfig(applyAutoLayout(data)), svgOptions);
 }
 
 function assertBrowser(): void {

@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useImperativeHandle, type Ref } from 'react';
+import { applyAutoLayout } from './applyLayout';
 import { AxialLink } from './AxialLink';
 import { ArchitectureCanvas, type ArchitectureCanvasProps } from './ArchitectureCanvas';
 import { DatastoreCylinder } from './DatastoreCylinder';
@@ -14,17 +15,18 @@ import {
   toBoundsNodes,
   validateGraphData,
   type ArchitectureGraphData,
+  type CoordinatedNode,
   type GraphLink,
-  type GraphNode,
 } from './types/graph';
 
 export interface ArchitectureGraphProps
   extends Omit<ArchitectureCanvasProps, 'children' | 'nodes'> {
   data: ArchitectureGraphData;
   exportRef?: Ref<ArchitectureExportHandle>;
+  autoLayout?: boolean;
 }
 
-function renderGraphNode(node: GraphNode) {
+function renderGraphNode(node: CoordinatedNode) {
   switch (node.type) {
     case 'service':
       return (
@@ -67,7 +69,7 @@ function renderGraphNode(node: GraphNode) {
 
 function renderGraphLink(
   link: GraphLink,
-  nodeById: Map<string, GraphNode>,
+  nodeById: Map<string, CoordinatedNode>,
 ) {
   const from = nodeById.get(link.from);
   const to = nodeById.get(link.to);
@@ -97,6 +99,7 @@ function renderGraphLink(
 
 export function ArchitectureGraph({
   data,
+  autoLayout,
   debug = false,
   width = 800,
   height = 600,
@@ -107,20 +110,25 @@ export function ArchitectureGraph({
 }: ArchitectureGraphProps) {
   validateGraphData(data);
 
+  const laidOut = useMemo(
+    () => applyAutoLayout(data, autoLayout),
+    [data, autoLayout],
+  );
+
   useImperativeHandle(
     exportRef,
-    () => createArchitectureExportHandle(data),
-    [data],
+    () => createArchitectureExportHandle(laidOut),
+    [laidOut],
   );
 
   const nodeById = useMemo(
-    () => new Map(data.nodes.map((node) => [node.id, node])),
-    [data.nodes],
+    () => new Map(laidOut.nodes.map((node) => [node.id, node])),
+    [laidOut.nodes],
   );
 
-  const boundsNodes = useMemo(() => toBoundsNodes(data.nodes), [data.nodes]);
+  const boundsNodes = useMemo(() => toBoundsNodes(laidOut.nodes), [laidOut.nodes]);
 
-  const links = (data.links ?? []).map((link) =>
+  const links = (laidOut.links ?? []).map((link) =>
     renderGraphLink(link, nodeById),
   );
 
@@ -135,7 +143,7 @@ export function ArchitectureGraph({
       style={style}
     >
       <g className="iso-links">{links}</g>
-      <g className="iso-nodes">{data.nodes.map(renderGraphNode)}</g>
+      <g className="iso-nodes">{laidOut.nodes.map(renderGraphNode)}</g>
     </ArchitectureCanvas>
   );
 }

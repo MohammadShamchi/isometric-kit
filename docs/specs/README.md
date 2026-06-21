@@ -14,7 +14,7 @@ Phase 0. The angles then build on top of it.
 
 | Phase | Folder | Maps to | Status |
 |---|---|---|---|
-| 0 | [`00-auto-layout-engine/`](00-auto-layout-engine/) | Shared keystone (graph → coordinates) | Requirements: **APPROVED** · Design: **APPROVED** · Tasks: **APPROVED** · Execution: not started |
+| 0 | [`00-auto-layout-engine/`](00-auto-layout-engine/) | Shared keystone (graph → coordinates) | **COMPLETE** (Requirements/Design/Tasks approved · execution done · 33 tests green) |
 | 1 | `01-llm-native-renderer/` | Angle 1 — Cursor play (LLM emits tiny JSON → stunning iso) | Not started |
 | 2 | `02-config-to-diagram/` | Angle 2 — YC play (parse docker-compose/Terraform → living diagram) | Not started |
 | 3 | `03-visual-canvas-codegen/` | Angle 3 — Vercel play (drag-drop canvas → React code export) | Not started |
