@@ -4,7 +4,7 @@ Living "where are we" doc for Isometric Kit. Update it as work lands. The per-ph
 [`docs/specs/`](specs/); this file is the higher-level done / remaining tracker.
 
 **Last updated:** 2026-06-21
-**Stage:** pre-release `v0.1.0` · on `master` · 33 tests green · not yet on GitHub or npm
+**Stage:** pre-release `v0.1.0` · public on GitHub ([MohammadShamchi/isometric-kit](https://github.com/MohammadShamchi/isometric-kit)) · CI green · 33 tests · not yet on npm
 
 ---
 
@@ -53,12 +53,16 @@ Keystone decision: build auto-layout first (Phase 0), because all three angles n
 ## Remaining
 
 ### Distribution (to make it a public, fundable repo)
-- [ ] Push to GitHub (public repo, description, topics).
-- [ ] Add CI - GitHub Actions running `npm test`, `npm run typecheck`, `npm run build` on PRs.
-- [ ] npm publish both packages:
-  - core publishes as-is (raw ESM `src/` + hand-written `index.d.ts`) - works for ESM consumers.
-  - react needs a `prepublishOnly: "npm run build"` so `dist/` is fresh before publish.
-  - consider changesets for versioning.
+- [x] Push to GitHub - public repo, description, topics: https://github.com/MohammadShamchi/isometric-kit
+- [x] Add CI - `.github/workflows/ci.yml` runs build + typecheck + test on push/PR (green on first run).
+- [x] npm publish metadata - `repository`/`homepage`/`bugs`/`keywords`/`publishConfig(access:public)` on
+  both packages; react has `prepublishOnly: npm run build`; `npm pack --dry-run` verified.
+- [ ] **npm publish (needs your npm account)** - blocked on auth + scope ownership:
+  - Create a free npm org named `isometric-design` (scoped packages need a matching org/user):
+    https://www.npmjs.com/org/create
+  - `npm login`, then publish **core first** (react depends on `@isometric-design/core@0.1.0`):
+    `npm publish -w @isometric-design/core` then `npm publish -w @isometric-design/react`
+  - If 2FA is on, each publish prompts for an OTP (must be run interactively).
 - [ ] Add ESLint + Prettier config (none today) and wire into CI / pre-commit.
 
 ### Phase 1 - LLM-native renderer (Angle 1, GTM wedge) - spec not started
