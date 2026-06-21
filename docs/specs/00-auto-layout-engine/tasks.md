@@ -106,4 +106,4 @@
 2026-06-21 | 00-auto-layout-engine 0.3 done | 6089f35 | order.js barycenter crossing reduction, 5 tests green (sonnet subagent, reviewed)
 2026-06-21 | 00-auto-layout-engine 0.4 done | 235a758 | layoutScene assembly (components/pinning/spacing/probe), full suite green (30 tests) (sonnet subagent, reviewed)
 2026-06-21 | 00-auto-layout-engine 0.5 done | d459a76 | barrel export + d.ts types + downstream integration test, 32 tests green (sonnet subagent, reviewed)
-2026-06-21 | 00-auto-layout-engine 0.6 done | PENDING | React autoLayout via shared applyLayout helper; GraphNode coords optional; export backward-compatible; typecheck+build+test+demo-typecheck clean (sonnet subagent + reviewer fixes)
+2026-06-21 | 00-auto-layout-engine 0.6 done | e74c883 | React autoLayout via shared applyLayout helper; GraphNode coords optional; export backward-compatible; typecheck+build+test+demo-typecheck clean (sonnet subagent + reviewer fixes)
