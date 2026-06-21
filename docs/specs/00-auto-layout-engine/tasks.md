@@ -95,4 +95,4 @@
 <!-- YYYY-MM-DD | 00-auto-layout-engine 0.x done | <sha> | note -->
 2026-06-21 | 00-auto-layout-engine 0.1 done | eac8a3a | Vitest harness + smoke test, npm test green (2 passed)
 2026-06-21 | 00-auto-layout-engine 0.2 done | 16d6b51 | rank.js cycle-break + longest-path ranking, 7 tests green
-2026-06-21 | 00-auto-layout-engine 0.3 done | PENDING | order.js barycenter crossing reduction, 5 tests green (sonnet subagent, reviewed)
+2026-06-21 | 00-auto-layout-engine 0.3 done | 6089f35 | order.js barycenter crossing reduction, 5 tests green (sonnet subagent, reviewed)
