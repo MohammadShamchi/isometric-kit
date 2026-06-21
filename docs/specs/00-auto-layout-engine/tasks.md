@@ -24,11 +24,12 @@
     (back-edges ignored for ranking, visited in input order), longest-path layering (Kahn) → `rank` map.
     7 tests green.
 
-- [ ] 0.3 **Within-rank ordering (crossing reduction) along `v`** (R0.7)
-  - [ ] 0.3.1 Write `packages/core/test/layout.order.test.js`: a known 2-rank crossing is reduced by
-    barycenter ordering; ordering is deterministic with stable input-order tie-breaks.
-  - [ ] 0.3.2 Implement `packages/core/src/layout/order.js`: barycenter sweep over ranks (mean
-    neighbor index), stable tie-break by input order, fixed iteration count. Make 0.3.1 green.
+- [x] 0.3 **Within-rank ordering (crossing reduction) along `v`** (R0.7)
+  - [x] 0.3.1 Write `packages/core/test/layout.order.test.js`: a known 2-rank crossing is reduced by
+    barycenter ordering; ordering is deterministic with stable input-order tie-breaks. (5 tests; built
+    via real `rankNodes`. Sonnet subagent, reviewed.)
+  - [x] 0.3.2 Implement `packages/core/src/layout/order.js`: barycenter sweep over ranks (mean
+    neighbor index), stable tie-break by input order, fixed iteration count (4 sweeps). 5 tests green.
 
 - [ ] 0.4 **`layoutScene` assembly: placement, components, pinning, overlap** (R0.1, R0.2, R0.3, R0.4, R0.5, R0.6)
   - [ ] 0.4.1 Write `packages/core/test/layout.test.js`: coord-less graph → all nodes get integer
@@ -94,3 +95,4 @@
 <!-- YYYY-MM-DD | 00-auto-layout-engine 0.x done | <sha> | note -->
 2026-06-21 | 00-auto-layout-engine 0.1 done | eac8a3a | Vitest harness + smoke test, npm test green (2 passed)
 2026-06-21 | 00-auto-layout-engine 0.2 done | 16d6b51 | rank.js cycle-break + longest-path ranking, 7 tests green
+2026-06-21 | 00-auto-layout-engine 0.3 done | PENDING | order.js barycenter crossing reduction, 5 tests green (sonnet subagent, reviewed)
