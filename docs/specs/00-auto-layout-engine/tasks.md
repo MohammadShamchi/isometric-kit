@@ -1,5 +1,5 @@
 # Auto-Layout Engine — Tasks
-**Status:** APPROVED
+**Status:** COMPLETE (all subtasks done, verification green)
 **Spec:** docs/specs/00-auto-layout-engine  ·  **Phase:** 0 of 4
 **Date:** 2026-06-21
 **Source brief:** requirements.md + design.md (this folder)
@@ -67,11 +67,12 @@
     graphs). Verified `npm run typecheck`, `npm run build`, `npm test` (32), AND
     `apps/demo-react` `tsc --noEmit` all clean. (sonnet subagent + reviewer fixes.)
 
-- [ ] 0.7 **Full verification + regression** (R0.6, R0.9)
-  - [ ] 0.7.1 Run `npm test`, `npm run typecheck`, `npm run build`; show all output green.
-  - [ ] 0.7.2 Add a regression test asserting `layoutScene` is identity on the all-pinned gateway demo
-    graph (coords + link unchanged), proving the explicit-coordinate path is untouched (R0.6). Make
-    green.
+- [x] 0.7 **Full verification + regression** (R0.6, R0.9)
+  - [x] 0.7.1 Run `npm test` (33 green), `npm run typecheck` (clean), `npm run build` (success), plus
+    `apps/demo-react` `tsc --noEmit` (clean). All green.
+  - [x] 0.7.2 Added regression test in `layout.test.js` asserting `layoutScene` is identity on the
+    all-pinned gateway demo graph (coords + link unchanged), proving the explicit-coordinate path is
+    untouched (R0.6). Green.
 
 ## Dependency / Execution Order
 1. **0.1** first — the test harness is a hard prerequisite for every test-first task below.
@@ -82,21 +83,21 @@
 6. **0.7** runs last (whole-suite verification + regression).
 
 ## Verification Checklist
-- [ ] `npm test` runs Vitest and all suites pass (R0.9).
-- [ ] Determinism: `layoutScene` called twice on equal (incl. key-shuffled) input returns deep-equal output (R0.2).
-- [ ] No overlap: every pair of `getNodeBounds` rects in a laid-out scene is disjoint, incl. long labels (R0.3).
-- [ ] Cycles/components/islands: cyclic graph terminates; disconnected components and isolated nodes placed without overlap (R0.4).
-- [ ] Pinned: explicit-coordinate nodes keep their coords; auto nodes never collide with them (R0.5).
-- [ ] Backward compat: all-pinned graph is unchanged; `npm run typecheck` + `npm run build` clean (R0.6).
-- [ ] Iso-aware: linked chain ranks increase along `u`; direct links land on shared `v` when unconstrained (R0.7).
-- [ ] React: omitting `u`/`v` auto-lays-out; `autoLayout={false}` preserves current behavior; export matches render (R0.8).
+- [x] `npm test` runs Vitest and all suites pass (R0.9). — 33 tests green.
+- [x] Determinism: `layoutScene` called twice on equal (incl. key-shuffled) input returns deep-equal output (R0.2).
+- [x] No overlap: every pair of `getNodeBounds` rects in a laid-out scene is disjoint, incl. long labels (R0.3).
+- [x] Cycles/components/islands: cyclic graph terminates; disconnected components and isolated nodes placed without overlap (R0.4).
+- [x] Pinned: explicit-coordinate nodes keep their coords; auto nodes never collide with them (R0.5).
+- [x] Backward compat: all-pinned graph is unchanged; `npm run typecheck` + `npm run build` clean; `apps/demo-react` typecheck clean (R0.6).
+- [x] Iso-aware: linked chain ranks increase along `u`; direct links land on shared `v` when unconstrained (R0.7).
+- [x] React: omitting `u`/`v` auto-lays-out; `autoLayout={false}` preserves current behavior; export matches render (R0.8).
 
 ## Definition of Done
-- [ ] `layoutScene(graph, options) -> SceneConfig` exported from `@isometric-design/core`, pure and deterministic.
-- [ ] All EARS criteria R0.1-R0.9 covered by passing Vitest tests.
-- [ ] `ArchitectureGraph` renders coordinate-less graphs via auto-layout; explicit-coordinate path unchanged.
-- [ ] `npm test`, `npm run typecheck`, `npm run build` all green.
-- [ ] Each completed top-level task committed with its scoped files and logged below.
+- [x] `layoutScene(graph, options) -> SceneConfig` exported from `@isometric-design/core`, pure and deterministic.
+- [x] All EARS criteria R0.1-R0.9 covered by passing Vitest tests.
+- [x] `ArchitectureGraph` renders coordinate-less graphs via auto-layout; explicit-coordinate path unchanged.
+- [x] `npm test`, `npm run typecheck`, `npm run build` all green.
+- [x] Each completed top-level task committed with its scoped files and logged below.
 
 ## Progress Log
 <!-- Appended by the executor (EXECUTION_PROTOCOL.md). One line per completed top-level task. -->
@@ -107,3 +108,4 @@
 2026-06-21 | 00-auto-layout-engine 0.4 done | 235a758 | layoutScene assembly (components/pinning/spacing/probe), full suite green (30 tests) (sonnet subagent, reviewed)
 2026-06-21 | 00-auto-layout-engine 0.5 done | d459a76 | barrel export + d.ts types + downstream integration test, 32 tests green (sonnet subagent, reviewed)
 2026-06-21 | 00-auto-layout-engine 0.6 done | e74c883 | React autoLayout via shared applyLayout helper; GraphNode coords optional; export backward-compatible; typecheck+build+test+demo-typecheck clean (sonnet subagent + reviewer fixes)
+2026-06-21 | 00-auto-layout-engine 0.7 done | PENDING | regression test (pinned gateway identity) + full verification: 33 tests, typecheck, build, demo typecheck all green. PHASE 0 COMPLETE.

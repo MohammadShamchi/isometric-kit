@@ -471,3 +471,26 @@ describe('R0.1.2 — downstream integration', () => {
     expect(svg).toContain('viewBox');
   });
 });
+
+// ---------------------------------------------------------------------------
+// Regression (0.7.2): the explicit-coordinate path must remain untouched.
+// Mirrors the apps/demo-react gateway topology (all nodes pinned).
+// ---------------------------------------------------------------------------
+
+describe('regression — all-pinned gateway demo graph is untouched (R0.6)', () => {
+  it('layoutScene is the identity on the pinned gateway topology', () => {
+    const gateway = {
+      nodes: [
+        { id: 'gateway', type: 'service', u: 1, v: 1, label: 'API Gateway' },
+        { id: 'db', type: 'cylinder', u: 3, v: 1, label: 'Postgres' },
+      ],
+      links: [{ from: 'gateway', to: 'db', type: 'axial' }],
+    };
+
+    const out = layoutScene(gateway);
+
+    expect(out.nodes.find((n) => n.id === 'gateway')).toMatchObject({ u: 1, v: 1 });
+    expect(out.nodes.find((n) => n.id === 'db')).toMatchObject({ u: 3, v: 1 });
+    expect(out.links).toEqual(gateway.links);
+  });
+});
