@@ -9,6 +9,10 @@
     "build": "npm run build --workspace=@isometric-design/react",
     "typecheck": "npm run typecheck --workspace=@isometric-design/react",
     "dev": "npm run dev --workspace=demo-react",
-    "dev:vanilla": "python3 -m http.server 8080"
+    "dev:vanilla": "python3 -m http.server 8080",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.9"
   }
 }

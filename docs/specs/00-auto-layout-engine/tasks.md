@@ -8,13 +8,13 @@
 ## Task Tree
 <!-- Test-first. Each top-level task cites the requirements it satisfies. One subtask per executor run. -->
 
-- [ ] 0.1 **Establish Vitest test harness** (R0.9)
-  - [ ] 0.1.1 Add `vitest` as a root devDependency and a root `"test": "vitest run"` script in
+- [x] 0.1 **Establish Vitest test harness** (R0.9)
+  - [x] 0.1.1 Add `vitest` as a root devDependency and a root `"test": "vitest run"` script in
     `package.json`; add `"test": "vitest run"` to `packages/core/package.json`. Add a minimal
-    `vitest.config.js` at root only if ESM resolution requires it.
-  - [ ] 0.1.2 Add `packages/core/test/smoke.test.js` importing `layoutScene` placeholder targets from
-    `../src/index.js` (initially just `IsoEngine`/`getSceneBounds`) to prove ESM resolution; run
-    `npm test` and show it green.
+    `vitest.config.js` at root only if ESM resolution requires it. (No config needed: Vitest 4 ESM
+    auto-discovery found `packages/core/test/*.test.js` out of the box.)
+  - [x] 0.1.2 Add `packages/core/test/smoke.test.js` importing `IsoEngine`/`getSceneBounds` from
+    `../src/index.js` to prove ESM resolution; `npm test` green (2 passed).
 
 - [ ] 0.2 **Cycle-breaking + rank assignment along `u`** (R0.4, R0.7)
   - [ ] 0.2.1 Write `packages/core/test/layout.rank.test.js`: chain `a→b→c` yields strictly increasing
@@ -92,3 +92,4 @@
 ## Progress Log
 <!-- Appended by the executor (EXECUTION_PROTOCOL.md). One line per completed top-level task. -->
 <!-- YYYY-MM-DD | 00-auto-layout-engine 0.x done | <sha> | note -->
+2026-06-21 | 00-auto-layout-engine 0.1 done | 6999bd6 | Vitest harness + smoke test, npm test green (2 passed)
