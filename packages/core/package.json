@@ -1,7 +1,7 @@
 {
   "name": "@isometric-design/core",
   "version": "0.1.0",
-  "description": "Isometric projection engine and SVG node primitives",
+  "description": "Headless, deterministic isometric projection + auto-layout engine for architecture diagrams (SVG, zero dependencies)",
   "type": "module",
   "types": "./src/index.d.ts",
   "exports": {
@@ -13,8 +13,30 @@
   "files": [
     "src"
   ],
+  "sideEffects": false,
   "scripts": {
     "test": "vitest run"
   },
-  "license": "MIT"
+  "keywords": [
+    "isometric",
+    "diagram",
+    "architecture",
+    "svg",
+    "auto-layout",
+    "graph",
+    "dependency-graph",
+    "diagrams-as-code"
+  ],
+  "author": "Mohammad Shamchi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohammadShamchi/isometric-kit.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/MohammadShamchi/isometric-kit#readme",
+  "bugs": "https://github.com/MohammadShamchi/isometric-kit/issues",
+  "publishConfig": {
+    "access": "public"
+  }
 }

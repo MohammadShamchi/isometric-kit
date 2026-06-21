@@ -1,6 +1,12 @@
 {
   "name": "isometric-design",
+  "description": "Isometric Kit monorepo: headless auto-layout isometric diagram engine + React components",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohammadShamchi/isometric-kit.git"
+  },
   "workspaces": [
     "packages/*",
     "apps/*"
