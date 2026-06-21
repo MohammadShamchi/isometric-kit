@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { layoutScene } from '../src/layout/index.js';
+import { layoutScene, renderScene, buildArchitectureSvg } from '../src/index.js';
 import { getNodeBounds, getSceneBounds } from '../src/bounds.js';
 
 // Two rects overlap if they share any interior area.
@@ -437,5 +437,37 @@ describe('R0.6 — backward compatibility / all-pinned graph', () => {
     expect(yOut.label).toBe('Y Node');
     expect(yOut.type).toBe('cylinder');
     expect(yOut.z).toBe(1);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// R0.1.2: Downstream integration — barrel export wires through correctly
+// ---------------------------------------------------------------------------
+
+describe('R0.1.2 — downstream integration', () => {
+  const graph = {
+    nodes: [
+      { id: 'gateway', type: 'service', label: 'API Gateway' },
+      { id: 'db', type: 'cylinder', label: 'Database' },
+      { id: 'worker', type: 'service', label: 'Worker' },
+    ],
+    links: [
+      { from: 'gateway', to: 'db', type: 'axial' },
+      { from: 'worker', to: 'db', type: 'axial' },
+    ],
+  };
+
+  it('renderScene on a layoutScene result returns a non-empty string', () => {
+    const scene = layoutScene(graph);
+    const svg = renderScene(scene);
+    expect(typeof svg).toBe('string');
+    expect(svg.length).toBeGreaterThan(0);
+  });
+
+  it('buildArchitectureSvg on a layoutScene result returns a string containing viewBox', () => {
+    const scene = layoutScene(graph);
+    const svg = buildArchitectureSvg(scene);
+    expect(typeof svg).toBe('string');
+    expect(svg).toContain('viewBox');
   });
 });

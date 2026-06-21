@@ -45,12 +45,13 @@
     probe auto nodes off pinned/occupied cells; return a new `SceneConfig` (no mutation). Full suite
     green (30 tests). (sonnet subagent, reviewed line-by-line.)
 
-- [ ] 0.5 **Public API surface + downstream integration** (R0.1)
-  - [ ] 0.5.1 Add `export { layoutScene } from './layout/index.js';` to `packages/core/src/index.js`.
-  - [ ] 0.5.2 Add `LayoutNode`, `LayoutGraph`, `LayoutOptions`, and `layoutScene` to
+- [x] 0.5 **Public API surface + downstream integration** (R0.1)
+  - [x] 0.5.1 Add `export { layoutScene } from './layout/index.js';` to `packages/core/src/index.js`.
+  - [x] 0.5.2 Add `LayoutNode`, `LayoutGraph`, `LayoutOptions`, and `layoutScene` to
     `packages/core/src/index.d.ts`; extend `layout.test.js` with an integration assert that
     `renderScene(layoutScene(g))` and `buildArchitectureSvg(layoutScene(g))` return non-empty strings
-    containing a `viewBox` (R0.1.2). Make green.
+    containing a `viewBox` (R0.1.2). Test now imports via the barrel `../src/index.js`. 32 tests green.
+    (sonnet subagent, reviewed.)
 
 - [ ] 0.6 **React `ArchitectureGraph` integration** (R0.8, R0.6)
   - [ ] 0.6.1 Make `u`/`v` optional on `GraphNodeRef` in `packages/react/src/types/graph.ts`; run
@@ -98,3 +99,4 @@
 2026-06-21 | 00-auto-layout-engine 0.2 done | 16d6b51 | rank.js cycle-break + longest-path ranking, 7 tests green
 2026-06-21 | 00-auto-layout-engine 0.3 done | 6089f35 | order.js barycenter crossing reduction, 5 tests green (sonnet subagent, reviewed)
 2026-06-21 | 00-auto-layout-engine 0.4 done | 235a758 | layoutScene assembly (components/pinning/spacing/probe), full suite green (30 tests) (sonnet subagent, reviewed)
+2026-06-21 | 00-auto-layout-engine 0.5 done | PENDING | barrel export + d.ts types + downstream integration test, 32 tests green (sonnet subagent, reviewed)

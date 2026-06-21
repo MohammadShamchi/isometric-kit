@@ -8,4 +8,5 @@ export { renderDoglegLink } from './vectors/dogleg-link.js';
 export { renderFlowMarkerDefs } from './vectors/defs.js';
 export { renderNode, renderLink, renderScene } from './render-scene.js';
 export { buildArchitectureSvg } from './export-scene.js';
+export { layoutScene } from './layout/index.js';
 export { SURFACE, ACCENT, GHOST } from './themes/states.js';
