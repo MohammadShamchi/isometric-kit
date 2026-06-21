@@ -53,13 +53,19 @@
     containing a `viewBox` (R0.1.2). Test now imports via the barrel `../src/index.js`. 32 tests green.
     (sonnet subagent, reviewed.)
 
-- [ ] 0.6 **React `ArchitectureGraph` integration** (R0.8, R0.6)
-  - [ ] 0.6.1 Make `u`/`v` optional on `GraphNodeRef` in `packages/react/src/types/graph.ts`; run
-    `npm run typecheck` clean.
-  - [ ] 0.6.2 In `packages/react/src/ArchitectureGraph.tsx`: add `autoLayout?: boolean`; compute
-    `needsLayout`; memoize `laidOut = layoutScene(data)` when needed; render nodes/links, build the
-    export handle, and compute `toBoundsNodes` from `laidOut`. Run `npm run typecheck` and
-    `npm run build` clean.
+- [x] 0.6 **React `ArchitectureGraph` integration** (R0.8, R0.6)
+  - [x] 0.6.1 Make `u`/`v` optional for graph input in `packages/react/src/types/graph.ts`.
+    REFINEMENT (reviewer): did NOT make `GraphNodeRef` optional — that breaks `AxialLink`/`DoglegLink`/
+    `ServiceCube`, which need required coords. Instead decoupled `GraphNode` from `GraphNodeRef`
+    (GraphNode gets its own optional `u?`/`v?`); added `CoordinatedNode = GraphNode & {u,v}` and
+    `CoordinatedGraphData`; `toBoundsNodes` now takes `CoordinatedNode[]`. `npm run typecheck` clean.
+  - [x] 0.6.2 In `ArchitectureGraph.tsx`: add `autoLayout?: boolean`; memoize `laidOut` via a shared
+    `applyAutoLayout()` helper (`packages/react/src/applyLayout.ts`, NEW); render nodes/links, export
+    handle, and `toBoundsNodes` all from `laidOut`. REVIEWER FIX: agent had changed `export.ts` public
+    signatures to require coords (broke the demo app); reverted to accept `ArchitectureGraphData` and
+    auto-layout internally via the same `applyAutoLayout` helper (also lets export handle coord-less
+    graphs). Verified `npm run typecheck`, `npm run build`, `npm test` (32), AND
+    `apps/demo-react` `tsc --noEmit` all clean. (sonnet subagent + reviewer fixes.)
 
 - [ ] 0.7 **Full verification + regression** (R0.6, R0.9)
   - [ ] 0.7.1 Run `npm test`, `npm run typecheck`, `npm run build`; show all output green.
@@ -100,3 +106,4 @@
 2026-06-21 | 00-auto-layout-engine 0.3 done | 6089f35 | order.js barycenter crossing reduction, 5 tests green (sonnet subagent, reviewed)
 2026-06-21 | 00-auto-layout-engine 0.4 done | 235a758 | layoutScene assembly (components/pinning/spacing/probe), full suite green (30 tests) (sonnet subagent, reviewed)
 2026-06-21 | 00-auto-layout-engine 0.5 done | d459a76 | barrel export + d.ts types + downstream integration test, 32 tests green (sonnet subagent, reviewed)
+2026-06-21 | 00-auto-layout-engine 0.6 done | PENDING | React autoLayout via shared applyLayout helper; GraphNode coords optional; export backward-compatible; typecheck+build+test+demo-typecheck clean (sonnet subagent + reviewer fixes)
